@@ -1,6 +1,7 @@
 <?php
 namespace Mouf\Mvc\Splash;
 
+use Mouf\Mvc\Splash\Services\SplashValidationException;
 use Mouf\Mvc\Splash\Utils\SplashException;
 
 use Mouf\Validator\MoufValidatorResult;
@@ -245,7 +246,7 @@ class Splash implements MoufStaticValidatorInterface {
 						$args[] = $paramFetcher->fetchValue($context);
 					} catch (SplashValidationException $e) {
 						
-						$e->setPrependedMessage(SplashUtils::translate("validate.error.while.validating.parameter", $paramFetcher->getName()));
+						$e->setPrependedMessage("Error while validating parameter ".$paramFetcher->getName());
 						throw $e;
 					}
 				}
